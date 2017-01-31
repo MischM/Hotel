@@ -14,7 +14,26 @@ namespace Hotel.Models
         //Constructors
         public Hotel(int id, string desc, int stars)
         {
-             
+            HotelID = id;
+            Description = desc;
+            Stars = stars;
+        }
+
+        //Methodes
+        public int HotelID
+        {
+            get { return hotelID; }
+            set { hotelID = value; }
+        }
+        public string Description
+        {
+            get { return description; }
+            set { description = value; }
+        }
+        public int Stars
+        {
+            get { return stars; }
+            set { stars = value; }
         }
     }
 }
