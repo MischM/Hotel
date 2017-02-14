@@ -25,14 +25,14 @@ namespace HotelManagement.Controllers
         // GET: Hotel
         public ActionResult Index()
         {
-            HotelRepository rep = new HotelRepository();
+            HotelRepositoryDB rep = new HotelRepositoryDB();
             List<Hotel> hotels = rep.FindAll();
             //return View(hotels);
             return View("Index", hotels);
         }
         public ActionResult Edit(int id)
         {
-            var rep = new HotelRepository();
+            var rep = new HotelRepositoryDB();
             var hotel = rep.FindById(id);
             ViewBag.StarSelection = CreateStars();
             return View(hotel);
@@ -40,7 +40,7 @@ namespace HotelManagement.Controllers
         [HttpPost]
         public ActionResult Edit(Hotel h)
         {
-            HotelRepository rep = new HotelRepository();
+            HotelRepositoryDB rep = new HotelRepositoryDB();
             rep.Save(h);
             ViewBag.Message = "Hotel gespeichert";
             ViewBag.StarSelection = CreateStars();
@@ -48,20 +48,20 @@ namespace HotelManagement.Controllers
         }
         public ActionResult Delete(int id)
         {
-            HotelRepository rep = new HotelRepository();
+            HotelRepositoryDB rep = new HotelRepositoryDB();
             rep.Delete(id);
             return Index();
         }
         public ActionResult Create()
         {
-            HotelRepository rep = new HotelRepository();
+            HotelRepositoryDB rep = new HotelRepositoryDB();
             Hotel h = new Hotel(0, "neues Hotel", 0);
             rep.Save(h);
-            return Index();
+            return RedirectToAction("Index", "Hotel");
         }
         public ActionResult Details(int id)
         {
-            HotelRepository rep = new HotelRepository();
+            HotelRepositoryDB rep = new HotelRepositoryDB();
             Hotel h = rep.FindById(id);
             return View(h);     //ruft die View mit dem Namen der Actionmethode auf und übergibt den Parameter. 
                                 //return View("Details", h);  	//dieser Aufruf würde dasselbe liefern wie die Zeile davor 
