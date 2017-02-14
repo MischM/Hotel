@@ -27,7 +27,8 @@ namespace HotelManagement.Controllers
         {
             HotelRepository rep = new HotelRepository();
             List<Hotel> hotels = rep.FindAll();
-            return View(hotels);
+            //return View(hotels);
+            return View("Index", hotels);
         }
         public ActionResult Edit(int id)
         {
@@ -58,6 +59,14 @@ namespace HotelManagement.Controllers
             rep.Save(h);
             return Index();
         }
+        public ActionResult Details(int id)
+        {
+            HotelRepository rep = new HotelRepository();
+            Hotel h = rep.FindById(id);
+            return View(h);     //ruft die View mit dem Namen der Actionmethode auf und übergibt den Parameter. 
+                                //return View("Details", h);  	//dieser Aufruf würde dasselbe liefern wie die Zeile davor 
+        }
+
 
     }
 }
